@@ -5,6 +5,6 @@ let db = {
   mlab: 'mongodb://natwipool:n0870726321@ds121345.mlab.com:21345/todo-app'
 }
 
-mongoose.connect(process.env.PORT ? db.localhost : db.mlab);
+mongoose.connect(db.localhost || db.mlab);
 
 module.exports = { mongoose };
