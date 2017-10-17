@@ -8,11 +8,11 @@ var { Todo } = require('./../models/Todo');
 const todos = [
   {
     _id: new ObjectID(),
-    text: 'seed todos test 1'
+    text: 'First test todo'
   },
   {
     _id: new ObjectID(),
-    text: 'seed todos test 2',
+    text: 'Second test todo',
     completed: true,
     completedAt: 3456
   }
