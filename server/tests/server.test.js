@@ -150,7 +150,7 @@ describe('DELETE /todos/:id', () => {
 describe('PATCH /todos/:id', () => {
   it('should update the todo', done => {
     var hexId = todos[0]._id.toHexString();
-    var text = 'test update to do 2';
+    var text = 'test update to do';
 
     request(app)
       .patch(`/todos/${hexId}`)

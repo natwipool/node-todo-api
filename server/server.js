@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 var { mongoose } = require('./db/mongoose');
 var { Todo } = require('./models/Todo');
-var { Users } = require('./models/Users');
+var { User } = require('./models/User');
 
 var app = express();
 const port = process.env.PORT;
@@ -104,6 +104,19 @@ app.patch('/todos/:id', (req, res) => {
     .catch(e => {
       return res.status(400).send();
     });
+});
+
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
+
+  user.save().then(() => {
+    return user.generateAuthToken();
+  }).then((token) => { // this promise and token come from return value of generateAuthToken()
+    res.header('x-auth', token).send(user);
+  }).catch((e) => {
+    res.status(400).send(e);
+  })
 });
 
 app.listen(port, () => {
