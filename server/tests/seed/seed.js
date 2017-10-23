@@ -22,20 +22,28 @@ var users = [
   {
     _id: userTwoId,
     email: 'natwipool@testTwo.com',
-    password: 'passwordTwo'
+    password: 'passwordTwo',
+    tokens: [
+      {
+        access: 'auth',
+        token: jwt.sign({ _id: userTwoId, access: 'auth'}, 'secretmessage').toString()
+      }
+    ]
   }
 ];
 
 var todos = [
   {
     _id: new ObjectID(),
-    text: 'First test todo'
+    text: 'First test todo',
+    _creator: userOneId
   },
   {
     _id: new ObjectID(),
     text: 'Second test todo',
     completed: true,
-    completedAt: 3456
+    completedAt: 3456,
+    _creator: userTwoId
   }
 ];
 
